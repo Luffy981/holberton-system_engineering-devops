@@ -1,2 +1,2 @@
 #!/bin/bash
-sas
+chmod --reference=hello olleh
