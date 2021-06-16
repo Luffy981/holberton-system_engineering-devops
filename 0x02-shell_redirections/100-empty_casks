@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lRa | find -type d,f -empty
+find -type d,f -empty | cut -d '/' -f 2
