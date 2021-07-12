@@ -1,2 +1,2 @@
 #!/bin/bash
-ewl
+tail -n +2 | cut -f1 | sort | uniq -c | cut -c 9- | head -n 11
