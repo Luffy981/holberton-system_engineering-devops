@@ -2,7 +2,7 @@
 # Bash script that displays Best School 10 times
 LIMIT=10
 i=0
-until [ "$i" -lt "$LIMIT" ]
+until [[ i -eq LIMIT ]]
 do
 	echo "Best School"
 	((i+=1))
