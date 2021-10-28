@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Best School and then Hi on a new line.
 LIMIT=10
 i=1
 while [ "$i" -le "$LIMIT" ]
