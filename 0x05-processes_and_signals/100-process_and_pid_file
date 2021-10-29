@@ -7,9 +7,9 @@
 
 filename="/var/run/myscript.pid"
 echo "$$" > filename
-trap "echo 'I hate the kill command'" SIGTERM
+trap "echo 'I hate the kill command'; rm -rf filename; exit" SIGTERM
 trap "echo 'Y U no love me?!'" SIGINT
-trap "rm -rf $filename; exit" SIGQUIT
+trap "rm -rf filename; exit" SIGQUIT
 while ((1))
 do
 	echo "To infinity and beyond"
