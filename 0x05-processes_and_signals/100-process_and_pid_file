@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Creates the file /var/run/myscript.pid containing its PID
+# kills a process
 echo "$$" > /var/run/myscript.pid
 trap "echo 'I hate the kill command'; rm -rf /var/run/myscript.pid; exit" SIGTERM
 trap "echo 'Y U no love me?!'" SIGINT
