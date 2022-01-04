@@ -1,14 +1,13 @@
-# Your SSH client configuration must be configured to use the private key ~/.ssh/school
-# Your SSH client configuration must be configured to refuse to authenticate using a password
-
-file_line {
-  path => '/etc/ssh/ssh_config',
-  ensure => 'present'
-  line => '	IdentityFile ~/.ssh/school'
+# file to coneect to a server
+# no password
+file_line { 'configuration_file':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '	IdentityFile ~/.ssh/school',
 }
 
-file_line {
-  path => '/etc/ssh/ssh_config',
-  ensure => 'present'
-  line => '	PasswordAuthentication no'
+file_line { 'no_password':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '	PasswordAuthentication no',
 }
