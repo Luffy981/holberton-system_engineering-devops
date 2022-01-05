@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Debugging docker
+
+service apache2 start
