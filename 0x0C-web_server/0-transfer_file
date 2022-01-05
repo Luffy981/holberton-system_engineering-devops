@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Bash script that transfers a file from our client to a server:
+
+identity_file="-i"
+ssh_option="-o"
+if [ "$#" -lt 3 ];
+then
+	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+elif [ "$#" -eq 4 ];
+then
+	file_path="$1"
+	ip="$2"
+	username="$3"
+	ssh_key_path="$4"
+	scp $ssh_option StrictHostKeyChecking=no $identity_file "$ssh_key_path"\
+			"$file_path" "$username@$ip":~/
+elif [ "$#" -eq 3 ];
+then
+	file_path="$1"
+	ip="$2"
+	username="$3"
+	scp $ssh_option StrictHostKeyChecking=no "$file_path" "$username@$ip":~/
+fi
