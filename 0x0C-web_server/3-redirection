@@ -2,7 +2,7 @@
 # Redirect
 TMP_FILE="tmp_version"
 SU=$(whoami)
-DIR="/ect/nginx/sites-available/default"
+DIR="/etc/nginx/sites-available/default"
 NEW_URL="https://twitter.com/Luffy_981"
 OLD_URL="/redirect_me"
 REDIRECT="\tlocation ${OLD_URL} {\n\t\treturn 301 ${NEW_URL};\n\t}"
@@ -20,7 +20,7 @@ $SU apt-get -y install nginx
 
 nginx -v 2>"STMP_FILE" 1> /dev/null
 
-$SU echo "Holberton School" > ~/index.html
+$SU echo "Hello World" > ~/index.html
 $SU mkdir --parents /var/www/html/
 $SU cp ~/index.html /var/www/html/
 
