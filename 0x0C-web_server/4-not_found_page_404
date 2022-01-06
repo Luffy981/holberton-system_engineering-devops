@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Redirect
+TMP_FILE="tmp_version"
+SU=$(whoami)
+DIR="/etc/nginx/sites-available/default"
+NEW_URL="https://twitter.com/Luffy_981"
+OLD_URL="/redirect_me"
+REDIRECT="\tlocation ${OLD_URL} {\n\t\treturn 301 ${NEW_URL};\n\t}"
+DIR_SERVER="/var/www/html/"
+ERROR404="server {\n\terror_page 404 \/error404.html;"
+
+if [[ "$SU" == "root" ]]; then
+	SU="sudo"
+else
+	echo "your need run with prefix sudo"
+	exit
+fi
+
+$SU usermod -aG $SU "$(whoami)"
+$SU apt-get -y update
+$SU apt-get -y install nginx
+
+nginx -v 2> "$TMP_FILE" 1> /dev/null
+
+$SU rm "${DIR_SERVER}*"
+$SU mkdir --parents "${DIR_SERVER}"
+$SU echo "Holberton School" > "${DIR_SERVER}index.html"
+$SU echo "Ceci n'est pas une page" > "${DIR_SERVER}error404.html"
+
+
+if [[ "$(wc --lines -- $TMP_FILE | cut --fields=1 --delimiter=' ')" -eq 1 ]]; then
+	$SU sed -i "/server_name _;/ a\\${REDIRECT}" $DIR
+	sed -i "s/^server\s{/$ERROR404/1" $DIR
+	$SU service nginx restart
+fi
+
+$SU rm "$TMP_FILE"
