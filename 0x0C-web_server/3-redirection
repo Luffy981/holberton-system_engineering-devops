@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Redirect
+TMP_FILE="tmp_version"
+SU=$(whoami)
+DIR="/ect/nginx/sites-available/default"
+NEW_URL="https://twitter.com/Luffy_981"
+OLD_URL="/redirect_me"
+REDIRECT="\tlocation ${OLD_URL} {\n\t\treturn 301 ${NEW_URL};\n\t}"
+
+if [[ "$SU" == "root" ]];
+then
+	SU="sudo"
+else
+	echo "You need run with sudo"
+	exit
+fi
+
+$SU apt-get -y update
+$SU apt-get -y install nginx
+
+nginx -v 2>"STMP_FILE" 1> /dev/null
+
+$SU echo "Holberton School" > ~/index.html
+$SU mkdir --parents /var/www/html/
+$SU cp ~/index.html /var/www/html/
+
+if [[ "$(wc --lines -- $TMP_FILE | cut --fields=1 --delimiter=' ')" -eq 1 ]];
+then
+	$SU sed -i "/server_name _;/ a\\${REDIRECT}" $DIR
+	$SU service nginx restart
+fi
+$SU rm "$TMP_FILE"
