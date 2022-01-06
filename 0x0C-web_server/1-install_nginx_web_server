@@ -2,7 +2,6 @@
 #install Nginx web server
 
 SU=$(whoami)
-TMP_FILE="tmp_version"
 
 if [[ "$SU" == "root" ]];
 then
@@ -13,14 +12,7 @@ fi
 
 $SU apt-get update
 $SU apt-get -y install nginx
-
-nginx -v 2> "$TMP_FILE" 1> /dev/null
-
-if [[ "$(wc --lines --$TMP_FILE | cut --fields=1 --delimiter=" ")" -eq 1 ]];
-then
-	$SU rm /var/www/html/*
-	$SU chown -R ubuntu /var/www
-	$SU echo "Hello World" > /var/www/html/index.nginx-debian.html
-	$SU service nginx restart
-fi
-$SU rm "$TMP_FILE"
+$SU rm /var/www/html/*
+$SU chown -R ubuntu /var/www
+$SU echo "Hello World" > /var/www/html/index.nginx-debian.html
+$SU service nginx restart
