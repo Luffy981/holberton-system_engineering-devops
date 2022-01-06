@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Redirect
-TMP_FILE="tmp_version"
 SU=$(whoami)
 DIR="/etc/nginx/sites-available/default"
 NEW_URL="https://twitter.com/Luffy_981"
