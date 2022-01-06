@@ -18,15 +18,9 @@ fi
 $SU apt-get -y update
 $SU apt-get -y install nginx
 
-nginx -v 2>"STMP_FILE" 1> /dev/null
 
 $SU echo "Hello World" > ~/index.html
 $SU mkdir --parents /var/www/html/
 $SU cp ~/index.html /var/www/html/
-
-if [[ "$(wc --lines -- $TMP_FILE | cut --fields=1 --delimiter=' ')" -eq 1 ]];
-then
-	$SU sed -i "/server_name _;/ a\\${REDIRECT}" $DIR
-	$SU service nginx restart
-fi
-$SU rm "$TMP_FILE"
+$SU sed -i "/server_name _;/ a\\${REDIRECT}" $DIR
+$SU service nginx restart
