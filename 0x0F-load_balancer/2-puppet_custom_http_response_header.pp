@@ -22,7 +22,7 @@ exec { 'update':
   line   => $str,
 }
 -> file { '/var/www/html/index.html':
-  content => 'Holberton School',
+  content => 'Hello World',
 }
 -> service { 'nginx':
   ensure  => running,
