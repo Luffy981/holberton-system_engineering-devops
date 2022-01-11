@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Script that configures a load balancer for Ubuntu 20.04
 sudo apt-get update
-sudo apt-get install -y haproxy=2.0.\*
-
+sudo apt-get install -y haproxy
 sudo chown -R ubuntu /etc/haproxy
 sudo chown -R ubuntu /etc/default
 
@@ -21,5 +20,4 @@ backend web-server
 
 echo "$configuration" >> /etc/haproxy/haproxy.cfg
 echo "ENABLED=1" >> /etc/default/haproxy
-sudo service haproxy start
-
+sudo service haproxy restart
