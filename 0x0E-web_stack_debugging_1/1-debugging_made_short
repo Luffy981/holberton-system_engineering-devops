@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Script that change the port to 80 & create a zombie process
+sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
+kill "$(ps aux | grep [n]ginx | grep root | cut -d ' ' -f8)"
