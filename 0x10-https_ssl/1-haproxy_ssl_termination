@@ -1,3 +1,4 @@
+
 global
 	log /dev/log	local0
 	log /dev/log	local1 notice
@@ -32,13 +33,15 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
-frontend http
-	bind *:80
-	bind *:443 ssl crt /etc/letsencrypt/live/www/bestluffy.tech/fullchain.pem
-	redirect scheme https if{ ssl_fc }
-	mode http
-	default_backend web-server
+frontend load_balancer
+		bind *:80
+    	bind *:443 ssl crt /etc/letsencrypt/live/www.bestluffy.tech/fullchain.pem
+		redirect scheme https if !{ ssl_fc }
+    	mode http
+		default_backend web-server
+
 backend web-server
 	balance roundrobin
 	server 3044-web-01 35.237.96.82:80 check
 	server 3044-web-02 54.164.136.88:80 check
+
