@@ -2,6 +2,6 @@
 # less scriptto fix bug
 pkill -9 apache2
 sudo chmod 644 /etc/nginx/nginx.conf
-sudo sed -i "s/80/8080/g" /etc/nginx/sites-available/default
 sudo sed -i "1i user nginx;" /etc/nginx/nginx.conf
+sudo sed -i 's/80/8080/' /etc/nginx/sites-available/default
 sudo -u nginx service nginx restart
