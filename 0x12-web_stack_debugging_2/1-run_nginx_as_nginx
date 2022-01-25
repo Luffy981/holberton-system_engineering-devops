@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Run Nginx as Nginx
+echo "worker_processes 4;
+events {
+	worker)connections 1024;
+}
+http {
+		server {
+		listen
+		8080;
+	}
+}" > /tmp/confNginx
+pkill apache2
+sudo -u nginx bash -c "nginx -c /tmp/confNginx"
