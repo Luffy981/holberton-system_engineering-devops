@@ -22,7 +22,7 @@ def GET_Api():
     tasks_todo = len(task_list)
     string = "Employee {} is done with tasks({}/{}):"
     print(string.format(name, tasks_todo, tasks))
-    [print("\t{}".format(i)) for i in task_list]
+    [print("\t {}".format(i)) for i in task_list]
 
 
 if __name__ == "__main__":
