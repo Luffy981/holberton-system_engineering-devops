@@ -21,7 +21,7 @@ def GET_Api():
                  if todo.get('completed')]
     tasks_todo = len(task_list)
     string = "Employee {} is done with tasks({}/{}):"
-    print(string.format(name, tasks, tasks_todo))
+    print(string.format(name, tasks_todo, tasks))
     [print("\t{}".format(i)) for i in task_list]
 
 
