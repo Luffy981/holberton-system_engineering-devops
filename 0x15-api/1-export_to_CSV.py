@@ -27,14 +27,13 @@ def GET_Api():
     list_dict = []
     for todo in request:
         dict_to_csv = {}
-        if todo.get('completed'):
-            dict_to_csv = {
-                'USER_ID': user_id,
-                'NAME': name,
-                'TASK': str(todo.get('completed')),
-                'TITLE': str(todo.get('title'))
-            }
-            list_dict.append(dict_to_csv)
+        dict_to_csv = {
+            'USER_ID': user_id,
+            'NAME': name,
+            'TASK': str(todo.get('completed')),
+            'TITLE': str(todo.get('title'))
+        }
+        list_dict.append(dict_to_csv)
     filename = "{}.csv".format(user_id)
     columns = ['USER_ID', 'NAME', 'TASK', 'TITLE']
     with open(filename, 'w') as f:
