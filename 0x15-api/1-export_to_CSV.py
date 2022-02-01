@@ -15,7 +15,7 @@ def GET_Api():
     # GET  METHOD
     user = requests.get('{}users?id={}'.format(url, user_id)).json()[0]
     request = requests.get('{}todos?userId={}'.format(url, user_id)).json()
-    name = user.get('name')
+    name = user.get('username')
     tasks = len(request)
     # Method : List Comprehension
     task_list = [todo.get("title") for todo in request
