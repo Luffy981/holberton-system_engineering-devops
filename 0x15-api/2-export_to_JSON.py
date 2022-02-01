@@ -28,14 +28,13 @@ def GET_Api():
     for todo in request:
         dict_to_json = {}
         dict_to_json = {
-            'task': str(todo.get('title')),
-            'completed': str(todo.get('completed')),
+            'task': todo.get('title'),
+            'completed': todo.get('completed'),
             'username': name,
         }
         list_dict.append(dict_to_json)
     dict_to_json = {}
     dict_to_json[user_id] = list_dict
-    print(dict_to_json)
     filename = "{}.json".format(user_id)
     with open(filename, 'w') as f:
         json.dump(dict_to_json, f)
