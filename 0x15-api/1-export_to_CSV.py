@@ -38,7 +38,7 @@ def GET_Api():
     filename = "{}.csv".format(user_id)
     columns = ['USER_ID', 'NAME', 'TASK', 'TITLE']
     with open(filename, 'w') as f:
-        writer = csv.DictWriter(f, fieldnames=columns)
+        writer = csv.DictWriter(f, fieldnames=columns, quoting=csv.QUOTE_ALL)
         writer.writerows(list_dict)
 
 
